@@ -39,9 +39,6 @@ tags:
 > 1. Obter menos de **42 pontos (60%)** no total da Prova Objetiva.
 > 2. Obter nota **ZERO** em qualquer uma das 4 disciplinas objetivas.
 > 3. Obter menos de **6,0 pontos (60%)** na Prova Discursiva.
-> 4. TESTANDO GIT HUB
-> 5. 
-> 
 
 > [!NOTE]
 > **Diferencial Crítico do Edital para TI:**
