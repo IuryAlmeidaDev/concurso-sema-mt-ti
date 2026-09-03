@@ -1,0 +1,7 @@
+# Obsidian workspace state (layout, open files)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+
+# Vercel deployment cache
+.vercel/
