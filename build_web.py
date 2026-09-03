@@ -9,9 +9,10 @@ os.makedirs(web_dir, exist_ok=True)
 # Copy raw markdown files
 for f in os.listdir(vault_dir):
     if f.endswith(".md"):
-        shutil.copy2(os.path.join(vault_dir, f), os.path.join(web_dir, f))
+        pass
 
-shutil.copy2(os.path.join(vault_dir, "00 - Dashboard.md"), os.path.join(web_dir, "README.md"))
+if os.path.exists(os.path.join(vault_dir, "00 - Dashboard.md")):
+    shutil.copy2(os.path.join(vault_dir, "00 - Dashboard.md"), os.path.join(vault_dir, "README.md"))
 with open(os.path.join(web_dir, ".nojekyll"), "w") as f:
     f.write("")
 
