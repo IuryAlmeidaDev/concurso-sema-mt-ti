@@ -507,6 +507,20 @@
       window.location.hash = '#/' + id;
 
       const doc = DOCS[index];
+
+      // Live fetch do arquivo markdown com cache busting para refletir alteracoes do Obsidian na hora
+      try {
+        const resp = await fetch(encodeURIComponent(doc.fileName) + '?t=' + Date.now());
+        if (resp.ok) {
+          const freshMd = await resp.text();
+          if (freshMd && freshMd.length > 30) {
+            doc.content = freshMd;
+          }
+        }
+      } catch (e) {
+        console.warn('Fallback para cache local:', e);
+      }
+
       const contentArea = document.getElementById('contentArea');
       contentArea.innerHTML = processMarkdown(doc.content);
 
@@ -581,6 +595,19 @@
     } else {
       loadDoc('00-dashboard');
     }
+
+    // Sincronizacao em segundo plano de todas as notas para a busca ficar 100% atualizada
+    setTimeout(async () => {
+      for (const d of DOCS) {
+        try {
+          const r = await fetch(encodeURIComponent(d.fileName) + '?t=' + Date.now());
+          if (r.ok) {
+            const t = await r.text();
+            if (t && t.length > 30) d.content = t;
+          }
+        } catch(e) {}
+      }
+    }, 1000);
   </script>
 </body>
 </html>
